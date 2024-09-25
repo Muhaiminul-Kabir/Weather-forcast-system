@@ -7,7 +7,7 @@ import time
 import cv2
 
 
-url = "http://192.168.0.3:8080/shot.jpg"
+url = "http://***.***.***.***:8080/shot.jpg"
 
 '''
 color_dict_HSV = {'black': [[180, 255, 30], [0, 0, 0]],
