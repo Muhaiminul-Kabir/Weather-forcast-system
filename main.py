@@ -46,6 +46,7 @@ def bg_worker(url,state):
         img_arr = np.array(bytearray(img_resp.content), dtype=np.uint8)
         img = cv2.imdecode(img_arr, -1)
         img = imutils.resize(img, width=320, height=240)
+        cv2.imshow("Android Video", img)
         if(state == "storm"):
             chk_storm(img,lb_gray,ub_gray)
         else:
@@ -92,7 +93,7 @@ def worker():
         elif(dec == "CLOUDY BUT SUNNY"):
             print("CLOUDY BUT SUNNY")
         elif(dec == "CLOUDY BUT OKAY"):
-            print("CLOUDY BUT OKAY")
+            print("CLOUDY AND POSSIBLE RAIN")
         else:
             print("STORMY")
         
