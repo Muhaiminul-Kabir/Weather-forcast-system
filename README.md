@@ -63,5 +63,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - Inspired by traditional weather forecasting methods and the potential of computer vision.
 - Thanks to the developers of the libraries used in this project.
-
-Feel free to modify or expand upon this project to suit your needs!
