@@ -1,4 +1,5 @@
 from playsound import playsound
+import PySimpleGUI as sg
 import numpy as np
 import threading
 import requests
@@ -7,7 +8,7 @@ import time
 import cv2
 
 
-url = "http://***.***.***.***:8080/shot.jpg"
+url = "http://192.168.0.3:8080/shot.jpg"
 
 '''
 color_dict_HSV = {'black': [[180, 255, 30], [0, 0, 0]],
@@ -32,7 +33,9 @@ ub_gray = np.array([180, 18, 230])
 dec = ""
 run = True
 
-
+def update_time():
+    return time.strftime("%H:%M:%S")
+ 
 
 def bg_worker(url,state):
     global lb_blue
@@ -61,10 +64,10 @@ def chk_storm(img,lb,ub):
     mask = cv2.inRange(hsv, lb, ub)
     
     if(np.sum(mask == 0) < np.sum(mask == 255) ):
-        dec = "STORMY"
+        dec = "RAINY"
    
     elif(np.sum(mask == 255) > 100):
-        dec = "CLOUDY BUT OKAY"
+        dec = "CLOUDY AND POSSIBLE RAIN"
         
     cv2.imshow("Android Cam mask", mask)
     
@@ -92,10 +95,13 @@ def worker():
             print("CLEAR")
         elif(dec == "CLOUDY BUT SUNNY"):
             print("CLOUDY BUT SUNNY")
-        elif(dec == "CLOUDY BUT OKAY"):
+        elif(dec == "CLOUDY AND POSSIBLE RAIN"):
             print("CLOUDY AND POSSIBLE RAIN")
         else:
-            print("STORMY")
+            print("RAINY")
+        
+        with open('C:/Users/ASUS/Desktop/output.txt', 'w') as file:
+            file.write(dec) 
         
         
     
